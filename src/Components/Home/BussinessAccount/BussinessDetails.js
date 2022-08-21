@@ -1,18 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import cross from "../../../Assest/8665876_square_root_variable_icon@2x.png";
 import contact from "../../../Assest/3669372_contact_ic_mail_icon.png";
 import person from "../../../Assest/8673597_ic_fluent_person_add_filled_icon@2x.png";
 import edit from "../../../Assest/103539_edit_icon.png";
 
-const BussinessDetails = () => {
-  const [user, setUser] = useState({});
-  useEffect(() => {
-    fetch("Data.json")
-      .then((res) => res.json())
-      .then((data) => setUser(data));
-  }, []);
-  const { account, contacts, variableValues } = user;
-  console.log(account, contacts, variableValues);
+const BussinessDetails = ({ getAccount }) => {
+  const handleUserData = (e) => {
+    e.preventDefault();
+    const title = e.target.title.value;
+    const name = e.target.name.value;
+    const phone = e.target.phone.value;
+    const email = e.target.email.value;
+    const designation = e.target.designation.value;
+    const tgName = e.target.tgName.value;
+    const contacts = {
+      title: title,
+      name: name,
+      contactNo: phone,
+      email: email,
+      designation: designation,
+      tgUsername: tgName,
+    };
+    getAccount(contacts);
+  };
   return (
     <div className="mt-6 flex justify-between gap-6">
       <div className="bg-primary rounded px-6 py-2 w-full">
@@ -50,42 +60,75 @@ const BussinessDetails = () => {
             ADD NEW
           </button>
         </div>
-        <div className="mt-4">
+        <form onSubmit={handleUserData} className="mt-4">
           <span className="flex justify-end">
             <img src={edit} alt="" />
           </span>
           <hr style={{ height: "3px" }} className="bg-gray-400 mt-2" />
 
-          <div className="flex w-full justify-start mt-2">
+          <div className="flex w-full justify-start items-center mt-2">
             <p className="text-gray-400 w-full">Title</p>
-            <p className="text-secondary w-full">Mr.</p>
+            <select name="title" class="select select-ghost w-2/4 max-w-xs">
+              <option>Mr.</option>
+              <option>Mrs.</option>
+            </select>
           </div>
-          <hr style={{ height: "3px" }} className="bg-gray-300 mt-2" />
-          <div className="flex w-full justify-start mt-2">
-            <p className="text-gray-400 w-full">Name</p>
-            <p className="text-secondary w-full">{contacts?.name}</p>
+          <hr style={{ height: "3px" }} className="bg-gray-300 " />
+          <div className="flex w-full justify-start items-center mt-2">
+            <p className="text-gray-400 w-full mt-2">Name</p>
+            <input
+              name="name"
+              type="text"
+              placeholder="type your name"
+              class="input input-ghost w-full input-sm"
+            />
           </div>
           <hr style={{ height: "3px" }} className="bg-gray-300 mt-2" />
           <div className="flex w-full justify-start mt-2">
             <p className="text-gray-400 w-full">Phone Number</p>
-            <p className="text-secondary w-full">{contacts?.contactNo}</p>
+            <input
+              name="phone"
+              type="text"
+              placeholder="type phone number"
+              class="input input-ghost w-full input-sm"
+            />
           </div>
           <hr style={{ height: "3px" }} className="bg-gray-300 mt-2" />
           <div className="flex w-full justify-start mt-2">
             <p className="text-gray-400 w-full">Email</p>
-            <p className="text-secondary w-full">{contacts?.email}</p>
+            <input
+              name="email"
+              type="text"
+              placeholder="type Email"
+              class="input input-ghost w-full input-sm"
+            />
           </div>
           <hr style={{ height: "3px" }} className="bg-gray-300 mt-2" />
           <div className="flex w-full justify-start mt-2">
             <p className="text-gray-400 w-full">Designation</p>
-            <p className="text-secondary w-full">{contacts?.designation}</p>
+            <input
+              name="designation"
+              type="text"
+              placeholder="type your designation"
+              class="input input-ghost w-full input-sm"
+            />
           </div>
           <hr style={{ height: "3px" }} className="bg-gray-300 mt-2" />
           <div className="flex w-full justify-start mt-2">
             <p className="text-gray-400 w-full">Telegram Username</p>
-            <p className="text-secondary w-full">{contacts?.tgUsername}</p>
+            <input
+              name="tgName"
+              type="text"
+              placeholder="type your tgName"
+              class="input input-ghost w-full input-sm"
+            />
           </div>
-        </div>
+          <input
+            className="mx-auto flex mt-2 cursor-pointer"
+            type="submit"
+            value="SUBMIT USER"
+          />
+        </form>
       </div>
     </div>
   );
