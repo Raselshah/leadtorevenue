@@ -1,0 +1,22 @@
+{
+  "account": {
+    "name": "Mr.MRS",
+    "type": "banker",
+    "ContactNo": "011111225",
+    "emailId": "you@mail.com"
+  },
+  "contacts": {
+    "title": "banker",
+    "name": "Mr.MRS",
+    "email": "you@mail.com",
+    "contactNo": "00000111",
+    "tgUsername": "bnkMRS",
+    "designation": "banker"
+  },
+  "variableValues": {
+    "variable key 1": "value 1",
+    "variable key 2": "value 2",
+    "variable key 3": "value 3"
+  },
+  "internName": "Application name"
+}

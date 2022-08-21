@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import control from "../../../Assest/control.png";
 import logo from "../../../Assest/logo.png";
-import home from "../../../Assest/216242_home_icon.png";
 import SideNav from "./SideNav";
 import AddCustomer from "../AddCustomer/AddCustomer";
 
@@ -53,7 +52,7 @@ const Navbar = () => {
             alt=""
           />
         </div>
-        <ul className="pt-6">
+        <ul className={`pt-8 ${!open && "pt-16"}`}>
           {Menus.map((Menu, index) => (
             <li key={index}>
               <Link
