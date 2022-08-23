@@ -45,7 +45,10 @@ const BussinessAccount = () => {
             designation: user.designation,
           },
         ],
-        internName: "Rasel",
+        variableValues: {
+          "Variable Key 5": "Value 5",
+        },
+        internName: user.name,
       }),
     };
     fetch(
@@ -54,6 +57,20 @@ const BussinessAccount = () => {
     )
       .then((res) => res.json())
       .then((data) => console.log("success", data));
+
+    fetch("https://internship.leadtorev.com/clients/customers/add", {
+      method: "PATCH",
+      body: JSON.stringify({
+        variableValues: {
+          "Variable Key 4": "Value 5",
+        },
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
   };
 
   return (
